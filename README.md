@@ -8,7 +8,7 @@ Change the configs accordingly to your needs.
 
 Deployment is automated using Ansible.
 
-$ ansible-playbook -i inventory playbook.yml
+$ ansible-playbook -i inventory setup.yml
 
 After that you can login into Grafana on http://your-server-ip:3000 (credentials are admin/admin)
 
