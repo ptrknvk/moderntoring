@@ -1,0 +1,6 @@
+[clients]
+client1 ansible_ssh_host=client1.example.com
+client2 ansible_ssh_host=client2.example.com
+
+[admins]
+admin-server ansible_ssh_host=admin-server.example.com
