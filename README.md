@@ -6,7 +6,7 @@ By default, the node-exporter is used. All of the basic metrics are available th
 
 Change the configs accordingly to your needs.
 
-Deployment is automated using Ansible.
+Deployment is automated using Ansible and conternerized using Docker Compose.
 
 $ ansible-playbook -i inventory setup.yml
 
