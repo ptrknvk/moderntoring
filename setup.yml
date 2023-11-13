@@ -1,0 +1,39 @@
+---
+- name: Monitoring Setup
+  hosts: all
+  become: true
+
+  tasks:
+    - name: Install Docker
+      apt:
+        name: docker.io
+        state: present
+
+    - name: Install Docker Compose
+      apt:
+        name: docker-compose
+        state: present
+
+    - name: Copy Docker Compose files
+      copy:
+        src: "{{ item }}"
+        dest: "/opt/{{ item }}"
+        mode: 0644
+      with_items:
+        - docker-compose.yml
+        - prometheus/
+        - alertmanager/
+
+    - name: Start Docker services
+      command: "docker-compose up -d"
+      args:
+        chdir: "/opt"
+
+    - name: Wait for services to start
+      wait_for:
+        host: "localhost"
+        port: 9090
+        timeout: 60
+
+
+

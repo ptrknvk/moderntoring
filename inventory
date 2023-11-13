@@ -1,0 +1,3 @@
+[clients]
+client1 ansible_ssh_host=194.87.218.55 
+

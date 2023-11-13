@@ -1,0 +1,10 @@
+[Unit]
+Description=Node Exporter
+
+[Service]
+ExecStart=/usr/local/bin/node_exporter
+User=node_exporter
+Restart=always
+
+[Install]
+WantedBy=default.target
