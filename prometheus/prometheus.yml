@@ -9,6 +9,7 @@ scrape_configs:
   - job_name: 'node-exporter'
     static_configs:
       - targets: 
+<<<<<<< HEAD
         - 'localhost:9100'
 
 remote_write:
@@ -16,3 +17,8 @@ remote_write:
 remote_read:
   - url: "http://admin-server:9090/read"
 
+=======
+        - 'client-0:9100'
+        - 'client-1:9100'
+        - 'admin-server:9100'
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742

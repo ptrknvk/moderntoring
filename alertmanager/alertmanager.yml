@@ -7,6 +7,10 @@ route:
   group_interval: 10s
   repeat_interval: 1h
 
+<<<<<<< HEAD
+=======
+  # Default receiver for all alerts
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742
   receiver: 'email-notifier'
 
 receivers:

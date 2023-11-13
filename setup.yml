@@ -14,6 +14,47 @@
         name: docker-compose
         state: present
 
+<<<<<<< HEAD
+=======
+    - name: Install Node Exporter
+      become_user: root
+      get_url:
+        url: "https://github.com/prometheus/node_exporter/releases/download/v1.2.2/node_exporter-1.2.2.linux-amd64.tar.gz"
+        dest: "/tmp/node_exporter.tar.gz"
+
+    - name: Extract Node Exporter
+      become_user: root
+      ansible.builtin.unarchive:
+        src: "/tmp/node_exporter.tar.gz"
+        dest: "/opt/"
+        remote_src: yes
+
+    - name: Move Node Exporter binary
+      become_user: root
+      command: "mv /opt/node_exporter-1.2.2.linux-amd64/node_exporter /usr/local/bin/"
+
+    - name: Create Node Exporter user
+      become_user: root
+      user:
+        name: node_exporter
+        system: yes
+        shell: /bin/false
+
+    - name: Configure Node Exporter systemd service
+      become_user: root
+      copy:
+        src: "node_exporter/node_exporter.service"
+        dest: "/etc/systemd/system/"
+        mode: 0644
+
+    - name: Start and Enable Node Exporter service
+      become_user: root
+      systemd:
+        name: node_exporter
+        state: started
+        enabled: yes
+
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742
     - name: Copy Docker Compose files
       copy:
         src: "{{ item }}"
@@ -23,6 +64,10 @@
         - docker-compose.yml
         - prometheus/
         - alertmanager/
+<<<<<<< HEAD
+=======
+        - grafana/
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742
 
     - name: Start Docker services
       command: "docker-compose up -d"
@@ -35,5 +80,28 @@
         port: 9090
         timeout: 60
 
+<<<<<<< HEAD
 
+=======
+    - name: Cleanup Docker Compose files
+      file:
+        path: "/opt/{{ item }}"
+        state: absent
+      with_items:
+        - prometheus/
+        - alertmanager/
+        - grafana/
+
+    - name: Configure Prometheus
+      copy:
+        src: "prometheus/prometheus.yml"
+        dest: "/opt/prometheus/prometheus.yml"
+        mode: 0644
+
+    - name: Copy AlertManager Config
+      copy:
+        src: "alertmanager/alertmanager.yml"
+        dest: "/opt/alertmanager/"
+        mode: 0644
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742
 

@@ -1,3 +1,11 @@
 [clients]
+<<<<<<< HEAD
 client1 ansible_ssh_host=194.87.218.55 
 
+=======
+client1 ansible_ssh_host=client1.example.com
+client2 ansible_ssh_host=client2.example.com
+
+[admins]
+admin-server ansible_ssh_host=admin-server.example.com
+>>>>>>> 96fb846b0f9c22c9605d36817116ec904f7f0742
